@@ -14517,18 +14517,18 @@ Source: www.kingbright.com</description>
 <part name="GND48" library="SparkFun" deviceset="GND" device=""/>
 <part name="C15" library="eagle-ltspice" deviceset="C" device="C0603" value="220p"/>
 <part name="GND51" library="SparkFun" deviceset="GND" device=""/>
-<part name="R49" library="eagle-ltspice" deviceset="R" device="R0603" value="56k"/>
+<part name="R49" library="eagle-ltspice" deviceset="R" device="R0603"/>
 <part name="GND54" library="SparkFun" deviceset="GND" device=""/>
 <part name="R51" library="eagle-ltspice" deviceset="R" device="R0603" value="5.6k"/>
 <part name="GND56" library="SparkFun" deviceset="GND" device=""/>
 <part name="R53" library="eagle-ltspice" deviceset="R" device="R0603" value="22K"/>
-<part name="C17" library="eagle-ltspice" deviceset="C" device="C0603" value="1n"/>
-<part name="R48" library="eagle-ltspice" deviceset="R" device="R0603" value="56k"/>
+<part name="C17" library="eagle-ltspice" deviceset="C" device="C0603" value="18p"/>
+<part name="R48" library="eagle-ltspice" deviceset="R" device="R0603"/>
 <part name="GND53" library="SparkFun" deviceset="GND" device=""/>
 <part name="R50" library="eagle-ltspice" deviceset="R" device="R0603" value="5.6k"/>
 <part name="GND55" library="SparkFun" deviceset="GND" device=""/>
 <part name="R52" library="eagle-ltspice" deviceset="R" device="R0603" value="22K"/>
-<part name="C16" library="eagle-ltspice" deviceset="C" device="C0603" value="1n"/>
+<part name="C16" library="eagle-ltspice" deviceset="C" device="C0603" value="18p"/>
 <part name="R56" library="eagle-ltspice" deviceset="R" device="R0603" value="1k"/>
 <part name="R34" library="eagle-ltspice" deviceset="R" device="R0603" value="3.3k"/>
 <part name="R35" library="eagle-ltspice" deviceset="R" device="R0603" value="3.3k"/>
