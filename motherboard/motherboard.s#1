@@ -398,10 +398,10 @@
 <description>&lt;h3&gt;9mm Square Rotary Potentiometer - PTH (KIT Variant)&lt;/h3&gt;
 &lt;p&gt;&lt;b&gt;Warning:&lt;/b&gt; This is the KIT version of this package. This package has a smaller diameter top stop mask, which doesn't cover the diameter of the pad. This means only the bottom side of the pads' copper will be exposed. You'll only be able to solder to the bottom side.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.sparkfun.com/datasheets/Components/General/Linear-Trimpot.pdf"&gt;Datasheet&lt;/a&gt;&lt;/p&gt;</description>
-<wire x1="6.73" y1="4.93" x2="6.73" y2="-4.93" width="0.2032" layer="21"/>
-<wire x1="6.73" y1="-4.93" x2="-5.346" y2="-4.93" width="0.2032" layer="21"/>
-<wire x1="-5.346" y1="-4.93" x2="-5.346" y2="4.93" width="0.2032" layer="21"/>
-<wire x1="-5.346" y1="4.93" x2="6.73" y2="4.93" width="0.2032" layer="21"/>
+<wire x1="6.73" y1="4.93" x2="6.73" y2="-4.93" width="0.2032" layer="51"/>
+<wire x1="6.73" y1="-4.93" x2="-5.346" y2="-4.93" width="0.2032" layer="51"/>
+<wire x1="-5.346" y1="-4.93" x2="-5.346" y2="4.93" width="0.2032" layer="51"/>
+<wire x1="-5.346" y1="4.93" x2="6.73" y2="4.93" width="0.2032" layer="51"/>
 <pad name="P$1" x="7" y="-2.5" drill="1" diameter="1.8796" stop="no"/>
 <pad name="P$2" x="7" y="0" drill="1" diameter="1.8796" stop="no"/>
 <pad name="P$3" x="7" y="2.5" drill="1" diameter="1.8796" stop="no"/>
@@ -14517,18 +14517,18 @@ Source: www.kingbright.com</description>
 <part name="GND48" library="SparkFun" deviceset="GND" device=""/>
 <part name="C15" library="eagle-ltspice" deviceset="C" device="C0603" value="220p"/>
 <part name="GND51" library="SparkFun" deviceset="GND" device=""/>
-<part name="R49" library="eagle-ltspice" deviceset="R" device="R0603" value="56k"/>
+<part name="R49" library="eagle-ltspice" deviceset="R" device="R0603"/>
 <part name="GND54" library="SparkFun" deviceset="GND" device=""/>
 <part name="R51" library="eagle-ltspice" deviceset="R" device="R0603" value="5.6k"/>
 <part name="GND56" library="SparkFun" deviceset="GND" device=""/>
 <part name="R53" library="eagle-ltspice" deviceset="R" device="R0603" value="22K"/>
-<part name="C17" library="eagle-ltspice" deviceset="C" device="C0603" value="1n"/>
-<part name="R48" library="eagle-ltspice" deviceset="R" device="R0603" value="56k"/>
+<part name="C17" library="eagle-ltspice" deviceset="C" device="C0603" value="18p"/>
+<part name="R48" library="eagle-ltspice" deviceset="R" device="R0603"/>
 <part name="GND53" library="SparkFun" deviceset="GND" device=""/>
 <part name="R50" library="eagle-ltspice" deviceset="R" device="R0603" value="5.6k"/>
 <part name="GND55" library="SparkFun" deviceset="GND" device=""/>
 <part name="R52" library="eagle-ltspice" deviceset="R" device="R0603" value="22K"/>
-<part name="C16" library="eagle-ltspice" deviceset="C" device="C0603" value="1n"/>
+<part name="C16" library="eagle-ltspice" deviceset="C" device="C0603" value="18p"/>
 <part name="R56" library="eagle-ltspice" deviceset="R" device="R0603" value="1k"/>
 <part name="R34" library="eagle-ltspice" deviceset="R" device="R0603" value="3.3k"/>
 <part name="R35" library="eagle-ltspice" deviceset="R" device="R0603" value="3.3k"/>
@@ -14686,7 +14686,7 @@ Source: www.kingbright.com</description>
 <part name="D9" library="led" deviceset="LED" device="3MM" value="3mm"/>
 <part name="R43" library="kweiwen" deviceset="*RESISTOR*" device="10MM" value="330"/>
 <part name="GND49" library="SparkFun" deviceset="GND" device=""/>
-<part name="VR8" library="kweiwen" deviceset="POTENTIOMETER_DUAL" device="-PTH-12MM-1/20W-20%-KIT" value="50k"/>
+<part name="VR8" library="kweiwen" deviceset="POTENTIOMETER_DUAL" device="-PTH-12MM-1/20W-20%-KIT"/>
 <part name="VR1" library="kweiwen" deviceset="POTENTIOMETER" device="-PTH-9MM-1/20W-20%-KIT" value="10k"/>
 <part name="GND10" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND11" library="SparkFun" deviceset="GND" device=""/>
@@ -16720,30 +16720,6 @@ Source: www.kingbright.com</description>
 </nets>
 </sheet>
 </sheets>
-<errors>
-<approved hash="104,3,170.18,119.38,U4P,V+,+12V,,,"/>
-<approved hash="104,3,170.18,104.14,U4P,V-,-12V,,,"/>
-<approved hash="104,3,180.34,119.38,U5P,V+,+12V,,,"/>
-<approved hash="104,3,180.34,104.14,U5P,V-,-12V,,,"/>
-<approved hash="104,3,142.24,119.38,U1P,V+,+12V,,,"/>
-<approved hash="104,3,142.24,104.14,U1P,V-,-12V,,,"/>
-<approved hash="104,3,149.86,119.38,U2P,V+,+12V,,,"/>
-<approved hash="104,3,149.86,104.14,U2P,V-,-12V,,,"/>
-<approved hash="104,3,160.02,119.38,U3P,V+,+12V,,,"/>
-<approved hash="104,3,160.02,104.14,U3P,V-,-12V,,,"/>
-<approved hash="106,1,53.34,25.4,CH7,,,,,"/>
-<approved hash="106,1,53.34,27.94,CH8,,,,,"/>
-<approved hash="113,2,151.405,147.32,R49,,,,,"/>
-<approved hash="113,2,151.405,172.72,R48,,,,,"/>
-<approved hash="113,3,73.66,113.225,SV3,,,,,"/>
-<approved hash="113,3,111.76,113.225,SV4,,,,,"/>
-<approved hash="113,1,60.96,20.5147,SV1,,,,,"/>
-<approved hash="113,2,238.76,165.295,SV2,,,,,"/>
-<approved hash="113,2,117.835,73.66,R43,,,,,"/>
-<approved hash="113,2,139.596,107.846,FRAME2,,,,,"/>
-<approved hash="113,3,139.596,107.846,FRAME3,,,,,"/>
-<approved hash="113,1,139.596,107.846,FRAME1,,,,,"/>
-</errors>
 </schematic>
 </drawing>
 <compatibility>
