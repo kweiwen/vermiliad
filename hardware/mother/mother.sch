@@ -14517,18 +14517,18 @@ Source: www.kingbright.com</description>
 <part name="GND48" library="SparkFun" deviceset="GND" device=""/>
 <part name="C15" library="eagle-ltspice" deviceset="C" device="C0603" value="220p"/>
 <part name="GND51" library="SparkFun" deviceset="GND" device=""/>
-<part name="R49" library="eagle-ltspice" deviceset="R" device="R0603" value="56k"/>
+<part name="R49" library="eagle-ltspice" deviceset="R" device="R0603"/>
 <part name="GND54" library="SparkFun" deviceset="GND" device=""/>
 <part name="R51" library="eagle-ltspice" deviceset="R" device="R0603" value="5.6k"/>
 <part name="GND56" library="SparkFun" deviceset="GND" device=""/>
-<part name="R53" library="eagle-ltspice" deviceset="R" device="R0603" value="22K"/>
-<part name="C17" library="eagle-ltspice" deviceset="C" device="C0603" value="1n"/>
-<part name="R48" library="eagle-ltspice" deviceset="R" device="R0603" value="56k"/>
+<part name="R53" library="eagle-ltspice" deviceset="R" device="R0603" value="39k"/>
+<part name="C17" library="eagle-ltspice" deviceset="C" device="C0603" value="18p"/>
+<part name="R48" library="eagle-ltspice" deviceset="R" device="R0603"/>
 <part name="GND53" library="SparkFun" deviceset="GND" device=""/>
 <part name="R50" library="eagle-ltspice" deviceset="R" device="R0603" value="5.6k"/>
 <part name="GND55" library="SparkFun" deviceset="GND" device=""/>
-<part name="R52" library="eagle-ltspice" deviceset="R" device="R0603" value="22K"/>
-<part name="C16" library="eagle-ltspice" deviceset="C" device="C0603" value="1n"/>
+<part name="R52" library="eagle-ltspice" deviceset="R" device="R0603" value="39k"/>
+<part name="C16" library="eagle-ltspice" deviceset="C" device="C0603" value="18p"/>
 <part name="R56" library="eagle-ltspice" deviceset="R" device="R0603" value="1k"/>
 <part name="R34" library="eagle-ltspice" deviceset="R" device="R0603" value="3.3k"/>
 <part name="R35" library="eagle-ltspice" deviceset="R" device="R0603" value="3.3k"/>
@@ -14550,7 +14550,7 @@ Source: www.kingbright.com</description>
 <part name="C19" library="eagle-ltspice" deviceset="C" device="C0603" value="1n"/>
 <part name="GND58" library="SparkFun" deviceset="GND" device=""/>
 <part name="R46" library="eagle-ltspice" deviceset="R" device="R0603" value="200"/>
-<part name="R47" library="RepRapjr" deviceset="R-TRIMM" device="64W" value="100"/>
+<part name="R47" library="RepRapjr" deviceset="R-TRIMM" device="64W" value="1k"/>
 <part name="J9" library="kweiwen" deviceset="JACK_3.5MM" device="PJ301BM"/>
 <part name="J7" library="kweiwen" deviceset="JACK_3.5MM" device="PJ301BM"/>
 <part name="J8" library="kweiwen" deviceset="JACK_3.5MM" device="PJ301BM"/>
@@ -14682,9 +14682,9 @@ Source: www.kingbright.com</description>
 <part name="C35" library="rcl" deviceset="CPOL-EU" device="E2.5-6" value="10u"/>
 <part name="GND71" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND72" library="SparkFun" deviceset="GND" device=""/>
-<part name="R45" library="kweiwen" deviceset="*RESISTOR*" device="10MM" value="147"/>
+<part name="R45" library="kweiwen" deviceset="*RESISTOR*" device="10MM" value="300"/>
 <part name="D9" library="led" deviceset="LED" device="3MM" value="3mm"/>
-<part name="R43" library="kweiwen" deviceset="*RESISTOR*" device="10MM" value="330"/>
+<part name="R43" library="kweiwen" deviceset="*RESISTOR*" device="10MM"/>
 <part name="GND49" library="SparkFun" deviceset="GND" device=""/>
 <part name="VR8" library="kweiwen" deviceset="POTENTIOMETER_DUAL" device="-PTH-12MM-1/20W-20%-KIT" value="50k"/>
 <part name="VR1" library="kweiwen" deviceset="POTENTIOMETER" device="-PTH-9MM-1/20W-20%-KIT" value="10k"/>
