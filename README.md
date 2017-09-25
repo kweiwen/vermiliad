@@ -14,7 +14,7 @@ dsp &amp; controlled voltage
 
 layout部分被拆成兩個電路板，adapter作為audio io與analog io，另外motherboard作為擴充，如調整電壓至modular level、vactrol mixing、cv adjustment…
 
-後記：
+## 後記：
 很可惜pure data的主程式已經不再更新了，在操縱模式介面都沒什麼改變的情況下，每次更新大多鎖定在平台擴充和臭蟲的清理、新增特定的library...等等，在新型平台趨近穩定的狀況，如:raspberry pi、beaglebone...加上多種library與功能的完善，主程式的更新其實越來越沒必要性，新的plugin deken會是一個不錯的走向，作為管理和新增library很重要的幫手。
 
 ## English:
