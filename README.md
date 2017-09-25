@@ -1,6 +1,20 @@
 # vermiliad
-dsp &amp; controlled voltage
-數位訊號處理 & 控制電壓
+* dsp, pure data &amp; controlled voltage
+* 數位訊號處理, pure data & 控制電壓
+
+## PCB Layout:
+
+* top of adapter
+<img src="https://user-images.githubusercontent.com/15021145/30796960-cd4b5b22-a206-11e7-84ff-6005570c5a67.png" width="280">
+
+* bottom of adapter
+<img src="https://user-images.githubusercontent.com/15021145/30796958-cd006d7e-a206-11e7-9c64-897f3f4fd79b.png" width="280">
+
+* top of motherboard
+<img src="https://user-images.githubusercontent.com/15021145/30796961-ce5ef316-a206-11e7-9a36-1bf88692054d.png" width="480">
+
+* bottom of motherboard
+<img src="https://user-images.githubusercontent.com/15021145/30796962-ce5f92e4-a206-11e7-8839-7095d0f902c5.png" width="480">
 
 ## 繁體中文:
 
