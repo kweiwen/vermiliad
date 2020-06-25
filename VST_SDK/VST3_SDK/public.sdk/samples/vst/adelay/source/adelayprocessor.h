@@ -37,6 +37,7 @@
 #pragma once
 
 #include "public.sdk/source/vst/vstaudioeffect.h"
+#include "circularbuffer.h"
 
 namespace Steinberg {
 namespace Vst {
@@ -60,8 +61,10 @@ public:
 	static FUnknown* createInstance (void*) { return (IAudioProcessor*)new ADelayProcessor (); }
 
 protected:
+    CircularBuffer<float>* circularbuffer;
 	ParamValue mDelay;
     ParamValue mGain;
+    ParamValue mMix;
 	float** mBuffer;
 	int32 mBufferPos;
 	bool mBypass;

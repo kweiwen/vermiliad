@@ -43,7 +43,8 @@ namespace Vst {
 enum {
 	kDelayId = 100,
     kGainId = 101,
-	kBypassId = 102
+    kMixId = 102,
+	kBypassId = 103
 };
 
 // unique class ids

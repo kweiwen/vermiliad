@@ -50,6 +50,7 @@ namespace Vst {
 ADelayProcessor::ADelayProcessor ()
 : mDelay (1)
 , mGain (1)
+, mMix (1)
 , mBuffer (0)
 , mBufferPos (0)
 , mBypass (false)
@@ -87,30 +88,22 @@ tresult PLUGIN_API ADelayProcessor::setActive (TBool state)
 	int32 numChannels = SpeakerArr::getChannelCount (arr);
 	if (numChannels == 0)
 		return kResultFalse;
-
+    
+    circularbuffer = new CircularBuffer<float>[numChannels];
+    
 	if (state)
 	{
-		mBuffer = (float**)std::malloc (numChannels * sizeof (float*));
-		
-		size_t size = (size_t)(processSetup.sampleRate * sizeof (float) + 0.5);
 		for (int32 channel = 0; channel < numChannels; channel++)
 		{
-			mBuffer[channel] = (float*)std::malloc (size);	// 1 second delay max
-			memset (mBuffer[channel], 0, size);
+            circularbuffer[channel].createCircularBuffer(8192);
 		}
-		mBufferPos = 0;
 	}
 	else
 	{
-		if (mBuffer)
-		{
-			for (int32 channel = 0; channel < numChannels; channel++)
-			{
-				std::free (mBuffer[channel]);
-			}
-			std::free (mBuffer);
-			mBuffer = 0;
-		}
+        for (int32 channel = 0; channel < numChannels; channel++)
+        {
+            circularbuffer[channel].flushBuffer();
+        }
 	}
 	return AudioEffect::setActive (state);
 }
@@ -140,15 +133,18 @@ tresult PLUGIN_API ADelayProcessor::process (ProcessData& data)
                         if (paramQueue->getPoint (numPoints - 1, sampleOffset, value) == kResultTrue)
                             mGain = value;
                         break;
+                    
+                    case kMixId:
+                        if (paramQueue->getPoint (numPoints - 1, sampleOffset, value) == kResultTrue)
+                            mMix = value;
+                        break;
                         
 					case kBypassId:
 						if (paramQueue->getPoint (numPoints - 1,  sampleOffset, value) == kResultTrue)
-						{
-							mBypass = (value > 0.5f);
-			}
+                            mBypass = (value > 0.5f);
 						break;
-		}
-	}
+                }
+            }
 		}
 	}
 
@@ -161,19 +157,17 @@ tresult PLUGIN_API ADelayProcessor::process (ProcessData& data)
 		// TODO do something in Bypass : copy inpuit to output if necessary...
 
 		// apply delay
-		int32 delayInSamples = std::max<int32> (1, (int32)(mDelay * processSetup.sampleRate)); // we have a minimum of 1 sample delay here
+		int32 delayInSamples = int32(mDelay * 8191);
 		for (int32 channel = 0; channel < numChannels; channel++)
 		{
 			float* inputChannel = data.inputs[0].channelBuffers32[channel];
 			float* outputChannel = data.outputs[0].channelBuffers32[channel];
             for (int32 sample = 0; sample < data.numSamples; sample++)
             {
-                outputChannel[sample] = inputChannel[sample] * mGain;
+                circularbuffer[channel].writeBuffer(inputChannel[sample]);
+                outputChannel[sample] = circularbuffer[channel].readBuffer(delayInSamples, false) * mGain * mMix + inputChannel[sample] * (1 - mMix);
             }
 		}
-		mBufferPos += data.numSamples;
-		while (delayInSamples && mBufferPos >= delayInSamples)
-			mBufferPos -= delayInSamples;
 	}	
 	return kResultTrue;
 }
@@ -193,6 +187,10 @@ tresult PLUGIN_API ADelayProcessor::setState (IBStream* state)
     
     float savedGain = 0.f;
     if (streamer.readFloat (savedGain) == false)
+        return kResultFalse;
+    
+    float savedMix = 0.f;
+    if (streamer.readFloat (savedMix) == false)
         return kResultFalse;
 
 	int32 savedBypass = 0;
@@ -217,6 +215,7 @@ tresult PLUGIN_API ADelayProcessor::getState (IBStream* state)
 
 	streamer.writeFloat (mDelay);
     streamer.writeFloat (mGain);
+    streamer.writeFloat (mMix);
 	streamer.writeInt32 (mBypass ? 1 : 0);
 
 	return kResultOk;
