@@ -38,6 +38,7 @@
 
 #include "public.sdk/source/vst/vstaudioeffect.h"
 #include "circularbuffer.h"
+#include "paramsmooth.h"
 
 namespace Steinberg {
 namespace Vst {
@@ -62,6 +63,7 @@ public:
 
 protected:
     CircularBuffer<float>* circularbuffer;
+    ParamSmooth paramsmooth;
 	ParamValue mDelay;
     ParamValue mGain;
     ParamValue mMix;

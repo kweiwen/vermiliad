@@ -51,6 +51,7 @@ ADelayProcessor::ADelayProcessor ()
 : mDelay (1)
 , mGain (1)
 , mMix (1)
+, paramsmooth(processSetup.sampleRate/400, processSetup.sampleRate)
 , mBuffer (0)
 , mBufferPos (0)
 , mBypass (false)
@@ -157,15 +158,15 @@ tresult PLUGIN_API ADelayProcessor::process (ProcessData& data)
 		// TODO do something in Bypass : copy inpuit to output if necessary...
 
 		// apply delay
-		int32 delayInSamples = int32(mDelay * 8191);
 		for (int32 channel = 0; channel < numChannels; channel++)
 		{
 			float* inputChannel = data.inputs[0].channelBuffers32[channel];
 			float* outputChannel = data.outputs[0].channelBuffers32[channel];
             for (int32 sample = 0; sample < data.numSamples; sample++)
             {
+                float delayInSamples = paramsmooth.process(mDelay * 8191);
                 circularbuffer[channel].writeBuffer(inputChannel[sample]);
-                outputChannel[sample] = circularbuffer[channel].readBuffer(delayInSamples, false) * mGain * mMix + inputChannel[sample] * (1 - mMix);
+                outputChannel[sample] = circularbuffer[channel].readBuffer(delayInSamples) * mGain * mMix + inputChannel[sample] * (1 - mMix);
             }
 		}
 	}	
