@@ -61,6 +61,7 @@ public:
 
 protected:
 	ParamValue mDelay;
+    ParamValue mGain;
 	float** mBuffer;
 	int32 mBufferPos;
 	bool mBypass;

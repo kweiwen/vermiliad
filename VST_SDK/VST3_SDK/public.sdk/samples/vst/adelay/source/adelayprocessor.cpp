@@ -49,6 +49,7 @@ namespace Vst {
 //-----------------------------------------------------------------------------
 ADelayProcessor::ADelayProcessor ()
 : mDelay (1)
+, mGain (1)
 , mBuffer (0)
 , mBufferPos (0)
 , mBypass (false)
@@ -134,6 +135,12 @@ tresult PLUGIN_API ADelayProcessor::process (ProcessData& data)
 						if (paramQueue->getPoint (numPoints - 1, sampleOffset, value) == kResultTrue)
 							mDelay = value;
 						break;
+                        
+                    case kGainId:
+                        if (paramQueue->getPoint (numPoints - 1, sampleOffset, value) == kResultTrue)
+                            mGain = value;
+                        break;
+                        
 					case kBypassId:
 						if (paramQueue->getPoint (numPoints - 1,  sampleOffset, value) == kResultTrue)
 						{
@@ -159,17 +166,10 @@ tresult PLUGIN_API ADelayProcessor::process (ProcessData& data)
 		{
 			float* inputChannel = data.inputs[0].channelBuffers32[channel];
 			float* outputChannel = data.outputs[0].channelBuffers32[channel];
-
-			int32 tempBufferPos = mBufferPos;
-			for (int32 sample = 0; sample < data.numSamples; sample++)
-			{
-				float tempSample = inputChannel[sample];
-				outputChannel[sample] = mBuffer[channel][tempBufferPos];
-				mBuffer[channel][tempBufferPos] = tempSample;
-				tempBufferPos++;
-				if (tempBufferPos >= delayInSamples)
-					tempBufferPos = 0;
-			}
+            for (int32 sample = 0; sample < data.numSamples; sample++)
+            {
+                outputChannel[sample] = inputChannel[sample] * mGain;
+            }
 		}
 		mBufferPos += data.numSamples;
 		while (delayInSamples && mBufferPos >= delayInSamples)
@@ -190,6 +190,10 @@ tresult PLUGIN_API ADelayProcessor::setState (IBStream* state)
 	float savedDelay = 0.f;
 	if (streamer.readFloat (savedDelay) == false)
 		return kResultFalse;
+    
+    float savedGain = 0.f;
+    if (streamer.readFloat (savedGain) == false)
+        return kResultFalse;
 
 	int32 savedBypass = 0;
 	if (streamer.readInt32 (savedBypass) == false)
@@ -198,6 +202,7 @@ tresult PLUGIN_API ADelayProcessor::setState (IBStream* state)
 	}
 
 	mDelay = savedDelay;
+    mGain = savedGain;
 	mBypass = savedBypass > 0;
 
 	return kResultOk;
@@ -211,6 +216,7 @@ tresult PLUGIN_API ADelayProcessor::getState (IBStream* state)
 	IBStreamer streamer (state, kLittleEndian);
 
 	streamer.writeFloat (mDelay);
+    streamer.writeFloat (mGain);
 	streamer.writeInt32 (mBypass ? 1 : 0);
 
 	return kResultOk;

@@ -42,7 +42,8 @@ namespace Vst {
 // parameter tags
 enum {
 	kDelayId = 100,
-	kBypassId = 101
+    kGainId = 101,
+	kBypassId = 102
 };
 
 // unique class ids

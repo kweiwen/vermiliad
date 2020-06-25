@@ -57,7 +57,8 @@ tresult PLUGIN_API ADelayController::initialize (FUnknown* context)
 	{
 		parameters.addParameter (STR16 ("Bypass"), 0, 1, 0, ParameterInfo::kCanAutomate|ParameterInfo::kIsBypass, kBypassId);
 
-		parameters.addParameter (STR16 ("Delay"), STR16 ("sec"), 0, 1, ParameterInfo::kCanAutomate, kDelayId);
+		parameters.addParameter (STR16 ("Delay"),   STR16 ("sec"), 0, 1, ParameterInfo::kCanAutomate, kDelayId);
+        parameters.addParameter (STR16 ("Gain"),    STR16 ("amp"), 0, 1, ParameterInfo::kCanAutomate, kGainId);
 	}
 	return kResultTrue;
 }
