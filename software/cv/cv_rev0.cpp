@@ -8,7 +8,6 @@ int main(void){
 
     int a2dVal[8];
     int a2dChannel = 0;
-    int i = 20;
 
     unsigned char data[3];
 
@@ -23,8 +22,6 @@ int main(void){
         a2dVal[a2dChannel] = 0;
         a2dVal[a2dChannel] = (data[1]<< 8) & 0b1100000000; //merge data[1] & data[2] to get result
         a2dVal[a2dChannel] |=  (data[2] & 0xff);
-
-	i--;
     }
 
     cout << "CV: " << a2dVal[0]<< ", " << a2dVal[1] << ", " << a2dVal[2]<< ", " << a2dVal[3] << ", " << a2dVal[4]<< ", " << a2dVal[5] << ", " << a2dVal[6]<< ", " << a2dVal[7] << endl;
