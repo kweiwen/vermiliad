@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="bbLuTc" name="CircularBuffer" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              pluginManufacturer="Sikhaa Electronics" pluginAAXCategory="0"
+              pluginVSTCategory="kPlugCategEffect" pluginRTASCategory="16"
+              pluginVST3Category="Fx" pluginAUMainType="'aufx'" companyName="Sikhaa Electronics">
+  <MAINGROUP id="mDAY29" name="CircularBuffer">
+    <GROUP id="{BBE079E4-F94F-7485-161A-6A2032B74FBE}" name="Source">
+      <FILE id="EUPXSJ" name="CircularBuffer.h" compile="0" resource="0"
+            file="Source/CircularBuffer.h"/>
+      <FILE id="l0wRtK" name="ParamSmooth.h" compile="0" resource="0" file="Source/ParamSmooth.h"/>
+      <FILE id="yZ4cYp" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="EvlR3c" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="hOdcXX" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="PyqvCm" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="CircularDelay"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="CircularDelay"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../Documents/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../Documents/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../Documents/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../Documents/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../Documents/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../Documents/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../Documents/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../Documents/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../Documents/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../Documents/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../Documents/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../Documents/JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <LIVE_SETTINGS>
+    <OSX/>
+  </LIVE_SETTINGS>
+</JUCERPROJECT>
