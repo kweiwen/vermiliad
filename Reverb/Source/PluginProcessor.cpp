@@ -118,7 +118,7 @@ void CircularBufferAudioProcessor::releaseResources()
     
     for (int index = 0; index < getTotalNumInputChannels(); index++)
     {
-        delete _mDelayParaSmooth[index];
+        delete [] _mDelayParaSmooth[index];
     }
     delete [] _mDelayParaSmooth;
     _mDelayParaSmooth = nullptr;
