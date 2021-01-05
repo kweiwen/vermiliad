@@ -22,8 +22,8 @@ CircularBufferAudioProcessor::CircularBufferAudioProcessor()
                        )
 #endif
 {
-    addParameter (gain        = new juce::AudioParameterFloat ("gain", "Gain", 0.0f, 1.0f, 0.5f));
-    addParameter (time        = new juce::AudioParameterFloat ("time", "Time", 0.0f, 1.0f, 0.5f));
+    addParameter (mGain        = new juce::AudioParameterFloat ("gain", "Gain", 0.0f, 1.0f, 0.5f));
+    addParameter (mTime        = new juce::AudioParameterFloat ("time", "Time", 0.0f, 1.0f, 0.5f));
 }
 
 CircularBufferAudioProcessor::~CircularBufferAudioProcessor()
@@ -97,15 +97,16 @@ void CircularBufferAudioProcessor::prepareToPlay (double sampleRate, int samples
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    _mCircularBuffer = new CircularBuffer<float>[getTotalNumInputChannels()];
-    _mDelayParaSmooth = new ParamSmooth*[getTotalNumInputChannels()];
+//    _mCircularBuffer = new CircularBuffer<float>[getTotalNumInputChannels()];
+//    _mCircularBuffer.reset(new CircularBuffer<float>[getTotalNumInputChannels()]);
+//    _mCircularBuffer.emplace_back(2);
+    mCircularBuffer.reset(new CircularBuffer<double>[getTotalNumInputChannels()]);
+    mDelayParaSmooth.reset(new ParamSmooth(sampleRate/100, sampleRate)[getTotalNumInputChannels()]);
     
     for (int index = 0; index < getTotalNumInputChannels(); index++)
     {
-        _mCircularBuffer[index].createCircularBuffer(sampleRate);
-        _mCircularBuffer[index].flushBuffer();
-        
-        _mDelayParaSmooth[index] = new ParamSmooth(sampleRate/100, sampleRate);
+        mCircularBuffer[index].createCircularBuffer(sampleRate);
+        mCircularBuffer[index].flushBuffer();
     }
 }
 
@@ -113,15 +114,6 @@ void CircularBufferAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
-    delete [] _mCircularBuffer;
-    _mCircularBuffer = nullptr;
-    
-    for (int index = 0; index < getTotalNumInputChannels(); index++)
-    {
-        delete [] _mDelayParaSmooth[index];
-    }
-    delete [] _mDelayParaSmooth;
-    _mDelayParaSmooth = nullptr;
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -178,9 +170,9 @@ void CircularBufferAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
         for (int sample = 0; sample < buffer.getNumSamples(); sample++)
         {
             // ..do something to the data...
-            _mCircularBuffer[channel].writeBuffer(channelData[sample]);
-            auto delaySample = _mDelayParaSmooth[channel]->process(time->get());
-            channelData[sample] = _mCircularBuffer[channel].readBuffer(delaySample * getSampleRate()) * gain->get();
+            mCircularBuffer[channel].writeBuffer(channelData[sample]);
+            auto delaySample = mDelayParaSmooth[channel].process(mTime->get());
+            channelData[sample] = mCircularBuffer[channel].readBuffer(delaySample * getSampleRate()) * mGain->get();
         }
     }
 }

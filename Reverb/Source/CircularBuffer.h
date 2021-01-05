@@ -7,115 +7,98 @@
 #ifndef CircularBuffer_h
 #define CircularBuffer_h
 
-#include <math.h>
-
 template <typename T>
 class CircularBuffer
 {
-public:
+
+    public:
     CircularBuffer()
     {
-        _writeIndex = 0;
-        _bufferLength = 0;
-        _wrapMask = 0;
+        mWriteIndex = 0;
+        mBufferLength = 0;
+        mWrapMask = 0;
     };
     
     ~CircularBuffer()
     {
-        delete[] _buffer;
-        delete[] _polynomials;
     };
     
-    struct SampleSet
-    {
-        T x, y;
-    };
-    
-    void createCircularBuffer(unsigned int _bufferLength);
-    void createPolynomials(unsigned int nthroots);
+    void createCircularBuffer(unsigned int input);
     void flushBuffer();
     void writeBuffer(T input);
-    
-    T readBuffer(float delayInSamples);
-    float readBuffer(float delayInFractionalSamples, bool interpolate);
+    T readBuffer(int delayInSamples);
+    T readBuffer(double delayInFractionalSamples, bool interpolate = true);
     
     static float doLinearInterpolation(float y1, float y2, float fractional_X);
-    static float doLargrangeInterpolation(SampleSet polynomials[], float delayInFractionalSamples, int n);
+    static float doHermitInterpolation(float y1, float y2, float fractional_X);
+    static float doLagrangeInterpolation(float y1, float y2, float fractional_X);
     
-private:
-    T* _buffer = nullptr;
-    SampleSet* _polynomials = nullptr;
-    unsigned int _writeIndex;
-    unsigned int _bufferLength;
-    unsigned int _wrapMask;
-    unsigned int _nthRoots;
+    private:
+    std::unique_ptr<T[]> mBuffer = nullptr;
+    unsigned int mWriteIndex;
+    unsigned int mBufferLength;
+    unsigned int mWrapMask;
 };
 
 template <typename T>
-void CircularBuffer<T>::createCircularBuffer(unsigned int bufferLength)
+void CircularBuffer<T>::createCircularBuffer(unsigned int input)
 {
-    // reset the to top
-    _writeIndex = 0;
-    
-    // init buffer length as power of 2
-    _bufferLength = (unsigned int)(pow(2, ceil(logf(bufferLength) / logf(2))));
-    
-    // warp mask as (buffer length - 1) for binary &= calculation
-    _wrapMask = _bufferLength - 1;
-    
-    // create new buffer, type as template type, array size as buffer length, {} makes the element as null which is equal 0
-    _buffer = new T[_bufferLength]{};
-}
-
-template<typename T>
-inline void CircularBuffer<T>::createPolynomials(unsigned int nthRoots)
-{
-    _nthRoots = nthRoots;
-    _polynomials = new SampleSet[_nthRoots];
+    // --- reset the to top
+    mWriteIndex = 0;
+    // --- init buffer length as power of 2
+    mBufferLength = (unsigned int)(pow(2, ceil(logf(input) / logf(2))));
+    // --- warp mask as (mBufferLength - 1) for binary &= calculation
+    mWrapMask = mBufferLength - 1;
+    // --- direct initialization object into mBufferLength size
+    mBuffer.reset(new T[mBufferLength]);
+    // --- clean the value inside mBuffer
+    flushBuffer();
 }
 
 template <typename T>
 void CircularBuffer<T>::flushBuffer()
 {
-    for (int i = 0; i < _bufferLength; i++)
+    for (int i = 0; i < mBufferLength; i++)
     {
-        _buffer[i] = 0;
+        mBuffer[i] = 0;
     }
 }
 
 template <typename T>
 void CircularBuffer<T>::writeBuffer(T input)
 {
-    _buffer[_writeIndex++] = input;
-    _writeIndex &= _wrapMask;
+    mBuffer[mWriteIndex++] = input;
+    mWriteIndex &= mWrapMask;
 }
 
 template<typename T>
-T CircularBuffer<T>::readBuffer(float delayInSamples)
+T CircularBuffer<T>::readBuffer(int delayInSamples)
 {
-    int readIndex = _writeIndex - (int)delayInSamples;
-    readIndex &= _wrapMask;
-    return _buffer[readIndex];
+    int readIndex = mWriteIndex - delayInSamples - 1;
+    readIndex &= mWrapMask;
+    return mBuffer[readIndex];
 }
 
 template<typename T>
-inline float CircularBuffer<T>::readBuffer(float delayInFractionalSamples, bool interpolate)
+// --- read an arbitrary location that includes a fractional sample
+T CircularBuffer<T>::readBuffer(double delayInFractionalSamples, bool interpolate /*= true*/)
 {
-    if (interpolate == false)
+    // --- truncate delayInFractionalSamples and read the int part
+    T y1 = readBuffer((int)delayInFractionalSamples);
+    // --- if no interpolation, just return value
+    if (!interpolate)
     {
-        T y1 = readBuffer(delayInFractionalSamples);
-        T y2 = readBuffer(delayInFractionalSamples + 1);
-        float fraction = delayInFractionalSamples - (int)delayInFractionalSamples;
-        return doLinearInterpolation(y1, y2, fraction);
+        return y1;
     }
+    // --- else do interpolation
     else
     {
-        for (int i = 0; i < sizeof(_polynomials); i++)
-        {
-            _polynomials[i].x = T(delayInFractionalSamples - 2 + i);
-            _polynomials[i].y = readBuffer(delayInFractionalSamples - 2 + i);
-        };
-        return doLargrangeInterpolation(_polynomials, delayInFractionalSamples, sizeof(_polynomials));
+        // --- read the sample at n+1 (one sample OLDER)
+        T y2 = readBuffer((int)delayInFractionalSamples + 1);
+        // --- get fractional part
+        double fraction = delayInFractionalSamples - (int) delayInFractionalSamples;
+        // --- do the interpolation (you could try different types here)
+        return doLinearInterpolation(y1, y2, fraction);
     }
 }
 
@@ -127,20 +110,18 @@ inline float CircularBuffer<T>::doLinearInterpolation(float y1, float y2, float 
 }
 
 template<typename T>
-inline float CircularBuffer<T>::doLargrangeInterpolation(SampleSet polynomials[], float delayInFractionalSamples, int n)
+inline float CircularBuffer<T>::doHermitInterpolation(float y1, float y2, float fractional_X)
 {
-    float result = 0;
-    for (int i = 0; i < n; i++)
-    {
-        float term = polynomials[i].y;
-        for (int j = 0; j < n; j++)
-        {
-            if (j != i)
-                term = term * (delayInFractionalSamples - polynomials[j].x) / float(polynomials[i].x - polynomials[j].x);
-        }
-        result += term;
-    }
-    return result;
+    if (fractional_X >= 1.0) return y2;
+    return fractional_X * y2 + (1 - fractional_X)*y1;
 }
+
+template<typename T>
+inline float CircularBuffer<T>::doLagrangeInterpolation(float y1, float y2, float fractional_X)
+{
+    if (fractional_X >= 1.0) return y2;
+    return fractional_X * y2 + (1 - fractional_X)*y1;
+}
+
 
 #endif /* CircularBuffer_h */

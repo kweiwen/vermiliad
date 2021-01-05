@@ -59,10 +59,11 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
-    CircularBuffer<float>* _mCircularBuffer;
-    ParamSmooth** _mDelayParaSmooth;
-    juce::AudioParameterFloat* gain;
-    juce::AudioParameterFloat* time;
+//    CircularBuffer<float>* _mCircularBuffer;
+    std::unique_ptr<CircularBuffer<double>[]> mCircularBuffer;
+    std::unique_ptr<ParamSmooth[]> mDelayParaSmooth;
+    juce::AudioParameterFloat* mGain;
+    juce::AudioParameterFloat* mTime;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CircularBufferAudioProcessor);
 };
