@@ -1,6 +1,6 @@
 # vermiliad
 * DSP, Pure Data &amp; Controlled Voltage
-* 數位訊號處理, pure data & 控制電壓
+* 數位訊號處理, Pure Data & 控制電壓
 
 ## PCB Layout:
 
