@@ -1,6 +1,6 @@
-# Vermiliad
-* DSP, Pure Data &amp; Controlled Voltage
-* 數位訊號處理, Pure Data & 控制電壓
+# Vermiliad - an open-source hardware solution to build digital modular synthesizer
+* DSP, Pure Data &amp; Controlled Voltage in a single pcb!
+* 數位訊號處理, Pure Data & 控制電壓 在一塊小小的PCB！
 
 ## PCB Layout:
 
