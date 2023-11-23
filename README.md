@@ -1,4 +1,4 @@
-# Vermiliad - An open-source hardware solution to build digital modular synthesizer
+# Vermiliad - An open-source hardware solution for building digital modular synthesizers
 * DSP, Pure Data, and Controlled Voltage in a single pcb!
 * 數位訊號處理、Pure Data、控制電壓融合在在一塊小小的PCB！
 
