@@ -45,4 +45,4 @@ Regarding the development of Pure Data, it is regrettable that the main program 
 板子布局被分為兩部分：Adapter負責Audio I/O和Analog I/O，Motherboard則用於擴充，例如調整電壓至Eurorack Level、Vactrol Mixing、CV Adjustment等。
 
 ## 後記：
-在Pure Data的發展上，遺憾的是主程式已不再更新。操控模式介面幾無變化，更新主要針對平台擴充、臭蟲修復和新增特定Library等。隨著新型平台如Raspberry Pi、BeagleBone的穩定，以及多種Library和功能的完善，主程式的更新逐漸減少。新的Deken Plugin將成為管理和新增library的重要工具。
+在Pure Data的發展上，遺憾的是主程式已不再更新。操控模式介面幾無變化，更新主要針對平台擴充、臭蟲修復和新增特定Library等。隨著新型平台如Raspberry Pi、BeagleBone的穩定，以及多種Library和功能的完善，主程式的更新逐漸減少。新的Deken Plugin將成為管理和新增Library的重要工具。
