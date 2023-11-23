@@ -18,18 +18,18 @@
 
 ## 繁體中文:
 
-始於2015年末的碩士論文題目「以Raspberry Pi、Python和Pure Data為基礎建造開源模組化合成器」，在麻豆當兵期間，不斷的實作與開發，將許多硬體和軟體的部分做了更有效率的調整與升級，並將模組的定位限制在real time dsp，使用者能夠在pure data上客製自己的模組功能，筆者也在pure data上實作了miller puckette的feedback delay network reverb，也有不錯的回饋。最後，透過開源的方式來管理這個專案，希望能帶給開源社群與合成器社團更多貢獻，以下將介紹本模組的特色與修改項目。
+本文介紹的碩士論文題目「基於Raspberry Pi、Python和Pure Data構建開源模組化合成器」始於2015年底。在服役於麻豆期間，我持續實作與開發，對許多硬體與軟體部分進行高效調整和升級。此模組限定於real-time dsp，允許使用者在Pure Data上自定義模組功能。我還在Pure Data上實現了Miller Puckette的feedback delay network reverb，獲得良好回饋。該項目最終以開源方式管理，旨在為開源社區和合成器愛好者貢獻更多。
 
-軟體方面筆者尚未找到比udp介面更適合傳輸資料到pure data的方法，所以沿用在舊版論文中的架構，透過mcp3008取得外部控制電壓的參數後，利用python傳送到udp網路即可被pure data讀取，但在python使用迴圈傳送資料會造成大量記憶體的消耗，筆者也曾使用linux bash的方式來進行迴圈，但結果依然不盡理想，0.5毫秒的傳輸頻率會消耗25%的cpu與18%的記憶體。python腳本會隨著raspberry pi與其他不穩定的因素在使用上能察覺外部控制的延遲，另外一點也是python本身是直譯式語言，雖然有很多方法能讓執行的速度和效率能在更高一點，但更換語言會是更好的選擇。
+在軟體方面，我未找到比UDP介面更合適的方法將數據傳輸到Pure Data。我使用MCP3008接收外部控制電壓參數，再通過Python傳輸至UDP網路供Pure Data讀取。然而，Python循環傳輸資料會大量消耗記憶體。即使嘗試過Linux Bash進行循環，結果仍不理想，0.5毫秒的傳輸頻率會消耗25%的CPU和18%的記憶體。Python腳本受Raspberry Pi和其他不穩定因素影響，導致外部控制延遲。鑑於Python是直譯式語言，儘管有提高效能的方法，更換語言仍是更佳選擇。
 
-最後筆者改使用c++取代python當作mcp3008與raspberry pi溝通的介面，而結果也十分顯著，取樣速度能到達0.1毫秒甚至更低，記憶體使用率約在3%以下與cpu佔用率也在5%左右，在使用上有更順暢的操控性，另外也能供給更多資源給pure data。
+最終，我改用C++取代Python作為MCP3008與Raspberry Pi的通訊介面。這帶來顯著改善，取樣速度可達0.1毫秒甚至更快，記憶體使用率約3%，CPU佔用率約5%，使操作更加順暢，並為Pure Data提供更多資源。
 
-硬體方面使用了i2s的音訊傳輸介面取代舊版的usb audio，晶片選用許多模組廠商已經成熟使用的wm8731，在linux kernel升級成4.4之後驅動模組也內建在kernel裡了，開發者能免除cross compiling的困擾，音質也有顯著的提升。在外部的控制電壓迴路上，設計op amp迴路調整電壓區間至mcp3008可接受的範圍，也將音源外部輸出做了很大的變更，音源原始訊號會與codec輸出訊號混合，使用vactrol控制乾濕訊號混合的比例，取代許多dsp類型的效果器是在數位迴路中做乾濕訊號混合的控制。
+在硬體方面，我採用I2S音訊傳輸介面取代舊有的USB audio，選用WM8731晶片，該晶片已被許多模組製造商廣泛使用。Linux kernel升級至4.4後，驅動模組內建於kernel中，開發者無需煩惱cross compiling，音質也顯著提升。外部控制電壓迴路設計了op amp迴路以調整電壓範圍，符合MCP3008的要求，並對音源外部輸出進行重大改動，原始訊號與codec輸出訊號混合，使用vactrol控制乾濕訊號比例，替代了許多dsp類型效果器在數位迴路中的控制。
 
-layout部分被拆成兩個電路板，adapter作為audio io與analog io，另外motherboard作為擴充，如調整電壓至modular level、vactrol mixing、cv adjustment…
+板子布局被分為兩部分：adapter負責audio I/O和analog I/O，motherboard則用於擴充，例如調整電壓至modular level、vactrol mixing、CV adjustment等。
 
 ## 後記：
-很可惜pure data的主程式已經不再更新了，在操縱模式介面都沒什麼改變的情況下，每次更新大多鎖定在平台擴充和臭蟲的清理、新增特定的library...等等，在新型平台趨近穩定的狀況，如:raspberry pi、beaglebone...加上多種library與功能的完善，主程式的更新其實越來越式微，新的plugin deken會是一個不錯的走向，作為管理和新增library很重要的幫手。
+在Pure Data的發展上，遺憾的是主程式已不再更新。操控模式介面幾無變化，更新主要針對平台擴充、臭蟲修復和新增特定library等。隨著新型平台如Raspberry Pi、BeagleBone的穩定，以及多種library和功能的完善，主程式的更新逐漸減少。新的Deken Plugin將成為管理和新增library的重要工具。
 
 ## English:
 under construction
