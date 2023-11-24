@@ -4,14 +4,18 @@
 
 <img src="https://user-images.githubusercontent.com/15021145/285414660-69b3eb3e-63e6-4aa7-8fcb-ff2c81d1cf1e.JPG" width="480">
 
-## DEMO:
-
+## DEMO1:
 * 第一段影片展示了Pass Through功能。首先使用 `aplay -l` 命令確認聲卡的輸入/輸出配置，隨後透過 `mplayer` 命令播放網絡電台。
+* The first clip demonstrates the Pass Through feature. It begins by using the `aplay -l` command to confirm the input/output configuration of the sound card, followed by playing an internet radio station using the `mplayer` command.
 * 第二段影片展現了Pitch Shifting的Echo效果。該功能是透過Pure Data實現的，音源輸入來自於Benjolin。
+* The second clip showcases the Echo effect of Pitch Shifting. This function is implemented through Pure Data, with the audio input sourced from Benjolin.
 * 第三段影片的設置與第二段相同，但在效果器的參數上進行了調整。
+* The setup in the third clip is the same as in the second, but with adjustments made to the parameters of the effects processor.
 <video src="https://github-production-user-asset-6210df.s3.amazonaws.com/15021145/285418308-6633f0b2-d7b3-4ce2-ba0a-d69b2f7387a2.mp4" width="320" controls></video>
 
+## DEMO2:
 * 最後一段影片展示了基於Feedback Delay Network的Granular Delay，這同樣是透過Pure Data實現的，音源輸入來自於Benjolin。
+* This final video demonstrates the Granular Delay based on Feedback Delay Network, also implemented through Pure Data, with the audio input sourced from Benjolin.
 <video src="https://github-production-user-asset-6210df.s3.amazonaws.com/15021145/285418398-cd53d4ac-97a0-486a-81fa-60b1c6fd6b72.mp4" width="320" controls></video>
 
 ## PCB Layout:
