@@ -6,9 +6,12 @@
 
 ## DEMO:
 
-<video src='https://github-production-user-asset-6210df.s3.amazonaws.com/15021145/285418308-6633f0b2-d7b3-4ce2-ba0a-d69b2f7387a2.mp4' width=180/>
-  
-<video src='https://github-production-user-asset-6210df.s3.amazonaws.com/15021145/285418398-cd53d4ac-97a0-486a-81fa-60b1c6fd6b72.mp4' width=180/>
+* 第一段影片展示了Pass Through功能。首先使用 `aplay -l` 命令確認聲卡的輸入/輸出配置，隨後透過 `mplayer` 命令播放網絡電台。
+* 第二段影片展現了Pitch Shifting的Echo效果。該功能是透過Pure Data實現的，音源輸入來自於 Benjolin。
+* 第三段影片的設置與第二段相同，但在效果器的參數上進行了調整。
+<video src="https://github-production-user-asset-6210df.s3.amazonaws.com/15021145/285418308-6633f0b2-d7b3-4ce2-ba0a-d69b2f7387a2.mp4" width="320" controls></video>
+* 最後一段影片展示了Feedback Delay Network，這同樣是透過Pure Data實現的，並以 Beyonce 的音樂作為輸入。
+<video src="https://github-production-user-asset-6210df.s3.amazonaws.com/15021145/285418398-cd53d4ac-97a0-486a-81fa-60b1c6fd6b72.mp4" width="320" controls></video>
 
 ## PCB Layout:
 
