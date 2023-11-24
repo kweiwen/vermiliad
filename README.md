@@ -5,8 +5,8 @@
 <img src="https://user-images.githubusercontent.com/15021145/285414660-69b3eb3e-63e6-4aa7-8fcb-ff2c81d1cf1e.JPG" width="480">
 
 ## DEMO1:
-* 第一段影片展示了Pass Through功能。首先使用 `aplay -l` 命令確認聲卡的輸入/輸出配置，隨後透過 `mplayer` 命令播放網絡電台。
-* The first clip demonstrates the Pass Through feature. It begins by using the `aplay -l` command to confirm the input/output configuration of the sound card, followed by playing an internet radio station using the `mplayer` command.
+* 第一段影片展示了Talk Through功能。首先使用 `aplay -l` 命令確認聲卡的輸入/輸出配置，隨後透過 `mplayer` 命令播放網絡電台。
+* The first clip demonstrates the Talk Through feature. It begins by using the `aplay -l` command to confirm the input/output configuration of the sound card, followed by playing an internet radio station using the `mplayer` command.
 * 第二段影片展現了Pitch Shifting的Echo效果。該功能是透過Pure Data實現的，音源輸入來自於Benjolin。
 * The second clip showcases the Echo effect of Pitch Shifting. This function is implemented through Pure Data, with the audio input sourced from Benjolin.
 * 第三段影片的設置與第二段相同，但在效果器的參數上進行了調整。
