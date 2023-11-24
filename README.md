@@ -4,6 +4,12 @@
 
 <img src="https://user-images.githubusercontent.com/15021145/285414660-69b3eb3e-63e6-4aa7-8fcb-ff2c81d1cf1e.JPG" width="480">
 
+## DEMO:
+
+<video src='https://github-production-user-asset-6210df.s3.amazonaws.com/15021145/285418308-6633f0b2-d7b3-4ce2-ba0a-d69b2f7387a2.mp4' width=180/>
+  
+<video src='https://github-production-user-asset-6210df.s3.amazonaws.com/15021145/285418398-cd53d4ac-97a0-486a-81fa-60b1c6fd6b72.mp4' width=180/>
+
 ## PCB Layout:
 
 * Top Of Adapter
