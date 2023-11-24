@@ -2,6 +2,8 @@
 * DSP, Pure Data, and Controlled Voltage in a single pcb!
 * 數位訊號處理、Pure Data、控制電壓融合在在一塊小小的PCB！
 
+<img src="https://user-images.githubusercontent.com/15021145/285414660-69b3eb3e-63e6-4aa7-8fcb-ff2c81d1cf1e.JPG" width="480">
+
 ## PCB Layout:
 
 * Top Of Adapter
