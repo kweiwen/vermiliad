@@ -5,8 +5,8 @@
 <img src="https://user-images.githubusercontent.com/15021145/285414660-69b3eb3e-63e6-4aa7-8fcb-ff2c81d1cf1e.JPG" width="480">
 
 ## DEMO1:
-* 第一段影片展示了Talk Through功能。首先使用 `aplay -l` 命令確認聲卡的輸入/輸出配置，隨後透過 `mplayer` 命令播放網絡電台。
-* The first clip demonstrates the Talk Through feature. It begins by using the `aplay -l` command to confirm the input/output configuration of the sound card, followed by playing an internet radio station using the `mplayer` command.
+* 第一段影片展示了Talk-Through功能。首先使用 `aplay -l` 命令確認聲卡的輸入/輸出配置，隨後透過 `mplayer` 命令播放網絡電台。
+* The first clip demonstrates the Talk-Through feature. It begins by using the `aplay -l` command to confirm the input/output configuration of the sound card, followed by playing an internet radio station using the `mplayer` command.
 * 第二段影片展現了Pitch Shifting的Echo效果。該功能是透過Pure Data實現的，音源輸入來自於Benjolin。
 * The second clip showcases the Echo effect of Pitch Shifting. This function is implemented through Pure Data, with the audio input sourced from Benjolin.
 * 第三段影片的設置與第二段相同，但在效果器的參數上進行了調整。
@@ -15,7 +15,7 @@
 
 ## DEMO2:
 * 最後一段影片展示了基於Feedback Delay Network的Granular Delay，這同樣是透過Pure Data實現的，音源輸入來自於Benjolin。
-* This final video demonstrates the Granular Delay based on Feedback Delay Network, also implemented through Pure Data, with the audio input sourced from Benjolin.
+* This final video demonstrates the Granular Delay based on Feedback Delay Networks, also implemented through Pure Data, with the audio input sourced from Benjolin.
 <video src="https://github-production-user-asset-6210df.s3.amazonaws.com/15021145/285418398-cd53d4ac-97a0-486a-81fa-60b1c6fd6b72.mp4" width="320" controls></video>
 
 ## PCB Layout:
@@ -38,15 +38,15 @@ This article introduces the master's thesis titled "Building an Open Source Modu
 
 In terms of software, I found no better method than the UDP interface for transmitting data to Pure Data. I used MCP3008 to receive external control voltage parameters, then transmitted them to the UDP network via Python for Pure Data to read. However, Python's looped data transmission consumed significant memory. Even attempts using Linux Bash loops were unsatisfactory, as a 0.5-millisecond transmission frequency consumed 25% of the CPU and 18% of the memory. Python scripts were affected by Raspberry Pi and other unstable factors, leading to external control delays. Given that Python is an interpreted language, despite methods to improve performance, switching languages proved to be a better option.
 
-Ultimately, I replaced Python with C++ as the interface for communication between MCP3008 and Raspberry Pi. This led to significant improvements: the sampling speed could reach 0.1 milliseconds or even faster, with about 3% memory usage and approximately 5% CPU occupancy. This change enhanced the operation smoothness and provided more resources for processing audio inside Pure Data.
+Ultimately, I replaced Python with C++ as the interface for communication between MCP3008 and Raspberry Pi. This led to significant improvements: the sampling speed could reach 0.1 milliseconds or even faster, with about 3% memory usage and approximately 5% CPU occupancy. This change enhanced the operation's smoothness and provided more resources for processing audio inside Pure Data.
 
 In hardware, I used the I2S audio transmission interface instead of the previous USB Audio, choosing the WM8731 chip, widely used by many module manufacturers. After upgrading the Linux kernel to 4.4, the I2S driver module was built into the kernel, relieving developers from the hassle of cross-compiling and significantly improving sound quality. The external control voltage circuit was designed with an OP Amp to adjust the voltage range to meet MCP3008's requirements. Major changes were made to the external output of the sound source, mixing the original signal with the Codec output, and using Vactrol to control the dry/wet signal ratio, replacing many DSP-type effects in digital loop control.
 
-The board layout was divided into two parts: the Adapter responsible for Audio I/O and Analog I/O, and the Motherboard for expansion, such as adjusting voltage to Eurorack Level, Vactrol Mixing, CV Adjustment, etc.
+The board layout was divided into two parts: the Adapter responsible for Audio I/O and Analog I/O, and the Motherboard for expansion, such as adjusting the voltage to Eurorack Level, Vactrol Mixing, CV Adjustment, etc.
 
 ## Epilogue:
 
-Regarding the development of Pure Data, it is regrettable that the main program is no longer updated. The interface and editor has hardly changed, and updates mainly focus on platform expansion, bug fixes, and adding specific libraries. With the stabilization of new platforms like Raspberry Pi and BeagleBone, and the improvement of various libraries and functions, the frequency of updates to the main program has gradually decreased. The new Deken Plugin will become an important tool for managing and adding libraries.
+Regarding the development of Pure Data, it is regrettable that the main program is no longer updated. The interface and editor have hardly changed, and updates mainly focus on platform expansion, bug fixes, and adding specific libraries. With the stabilization of new platforms like Raspberry Pi, and BeagleBone and the improvement of various libraries and functions, the frequency of updates to the main program has gradually decreased. The new Deken Plugin will become an important tool for managing and adding libraries.
 
 ## 簡介:
 
