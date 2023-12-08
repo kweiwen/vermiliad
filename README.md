@@ -48,6 +48,13 @@ The board layout was divided into two parts: the Adapter responsible for Audio I
 
 Regarding the development of Pure Data, it is regrettable that the main program is no longer updated. The interface and editor have hardly changed, and updates mainly focus on platform expansion, bug fixes, and adding specific libraries. With the stabilization of new platforms like Raspberry Pi, and BeagleBone and the improvement of various libraries and functions, the frequency of updates to the main program has gradually decreased. The new Deken Plugin will become an important tool for managing and adding libraries.
 
+## License
+Code: MIT license.
+
+Hardware: cc-by-sa-3.0
+
+By: Tseng Kweiwen
+
 ## 簡介:
 
 本文介紹的碩士論文題目「基於Raspberry Pi、Python和Pure Data構建開源模組化合成器」始於2015年底。在服役於台南麻豆期間，我持續實作與開發，對許多硬體與軟體部分進行高效調整和升級。此模組是為了服務Real-Time DSP，允許使用者在Pure Data上自定義模組合成器功能。我還在Pure Data上實現了Miller Puckette的Feedback Delay Network的Reverb，獲得良好回饋。該項目最終以開源方式管理，旨在為開源社區和合成器愛好者貢獻更多。
